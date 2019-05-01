@@ -1,0 +1,36 @@
+<?php
+	
+	$titulo = "Inserir loja";
+
+	include 'header.html';
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		include 'conexao.php';
+
+		$nome = $_POST['nome'];
+		$gerente = $_POST['gerente'];
+		$data = $_POST['data'];
+
+		$sql = "INSERT INTO loja(nome, gerente, data_criacao) VALUES ('$nome', '$gerente', '$data')";
+
+
+		if ($conexao->query($sql) === TRUE) {
+		    header("Location: lojas.html");
+			die();
+		}  else {
+		    echo "Erro: " . $sql . "<br>" . $conexao->error. "<br>";
+		}
+
+
+		$conexao->close();
+	}
+
+?>
+
+<!-- FORM PARA INSERIR LOJA -->
+
+<?php
+
+include 'footer.html';
+
+?>

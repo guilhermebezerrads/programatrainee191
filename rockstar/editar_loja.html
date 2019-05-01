@@ -1,0 +1,43 @@
+<?php
+	
+	$titulo = "Editar loja";
+
+	include 'header.html';
+
+	include 'conexao.php';
+
+	$id = $_GET['id'];
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+		$nome = $_POST['nome'];
+		$gerente = $_POST['gerente'];
+		$data = $_POST['data'];
+
+		$sql = "UPDATE loja SET nome='$nome', gerente='$gerente', data_criacao='$data' WHERE id=$id";
+
+
+		if ($conexao->query($sql) === TRUE) {
+		    echo "Loja atualizada com sucesso. <br>";
+		}  else {
+		    echo "Erro: " . $sql . "<br>" . $conexao->error. "<br>";
+		}
+		
+	}
+
+	$sql = "SELECT * FROM loja WHERE id=$id";
+
+	$loja = $conexao->query($sql);
+
+	$loja = $loja->fetch_assoc();
+
+	$conexao->close();
+?>
+
+<!-- FORM PARA EDITAR LOJA -->
+
+<?php
+
+include 'footer.html';
+
+?>

@@ -1,0 +1,53 @@
+<?php
+	
+	$titulo = "Lojas";
+
+	include 'header.html';
+
+	include 'conexao.php';
+
+
+	$sql = "SELECT * FROM loja";
+
+	$resultado = $conexao->query($sql);
+
+	if ($resultado->num_rows > 0) {
+
+		echo "<table border='1'>";
+		echo "<tr><th>ID</th><th>Nome</th><th>Gerente</th><th>Data de criação</th><th>Opções</th></tr>";
+
+	    while($linha = $resultado->fetch_assoc()) {
+?>
+	<!-- LINHA DA TABELA -->
+	<!-- CORRIJA O CÓDIGO COM A TAG DE LINHA E AS TAGS DE COLUNAS -->
+		
+			<?php echo $linha['id']; ?>
+			<?php echo $linha['nome']; ?>
+			<?php echo $linha['gerente']; ?>
+			<?php echo $linha['data_criacao']; ?>
+			<a href="editar_loja.html?id=<?php echo $linha['id'] ?>">Editar</a> | <a href="excluir_loja.html?id=<?php echo $linha['id'] ?>">Excluir</a>
+<?php
+	    }
+
+	    echo "</table>";
+
+	} else {
+
+	    echo "0 resultados.";
+
+	}
+
+	$conexao->close();
+
+?> 
+<br><br>
+<!-- BOTÃO/LINK PARA INSERIR NOVA LOJA -->
+<br><br>
+<!-- LINK PARA LOJAS COM SELECT -->
+
+
+<?php
+
+include 'footer.html';
+
+?>

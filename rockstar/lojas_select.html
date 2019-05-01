@@ -1,0 +1,38 @@
+<?php
+	
+	$titulo = "Lojas";
+
+	include 'header.html';
+
+	include 'conexao.php';
+
+
+	$sql = "SELECT * FROM loja";
+
+	$resultado = $conexao->query($sql);
+
+	if ($resultado->num_rows > 0) {
+
+		echo "<select name='lojas'>";
+
+	    while($linha = $resultado->fetch_assoc()) {
+?>
+		<option value="<?php echo $linha['id']; ?>">
+			<?php echo $linha['nome']; ?>
+		</option>
+<?php
+	    }
+
+	    echo "</select>";
+
+	} else {
+
+	    echo "0 resultados.";
+
+	}
+
+	$conexao->close();
+
+include 'footer.html';
+
+?>

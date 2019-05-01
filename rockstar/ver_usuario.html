@@ -1,0 +1,31 @@
+<?php
+	
+	$titulo = "Inserir usuário";
+
+	include 'header.html';
+?>
+
+<!-- CÓDIGO DE ESTILIZAÇÃO DA EXIBIÇÃO ABAIXO -->
+
+<?php
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		echo $_POST['username'] . "<br>";
+		echo $_POST['senha'] . "<br>";
+		echo $_POST['data'] . "<br>";
+		echo $_POST['biografia'] . "<br>";
+		if (isset($_POST['admin'])) {
+			echo "Administrador" . "<br>";
+		} else{
+			echo "Não é administrador" . "<br>";
+		}
+		echo $_POST['papel'] . "<br>";
+
+	}
+
+
+?>
+
+<?php
+	include 'footer.html';
+
+?>
